@@ -11,3 +11,6 @@ Thumbs.db
 *.tar.gz
 *.log
 
+
+# Python
+__pycache__/

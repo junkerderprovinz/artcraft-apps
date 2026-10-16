@@ -23,4 +23,11 @@ chmod 0755 /config/.config/labwc/autostart
 mkdir -p /config/.local/share /config/.cache
 chown abc:abc /config/.config /config/.local /config/.local/share /config/.cache
 
+# The file dialogs come from the GTK portal, whose side bar lists the GTK
+# bookmarks, and /storage is where the user's files are mounted.
+bookmarks=/config/.config/gtk-3.0/bookmarks
+mkdir -p "${bookmarks%/*}"
+grep -qx "file:///storage Storage" "${bookmarks}" 2>/dev/null || echo "file:///storage Storage" >> "${bookmarks}"
+chown -R abc:abc "${bookmarks%/*}"
+
 echo "[init-craft] ${CRAFT_TITLE} session ready"

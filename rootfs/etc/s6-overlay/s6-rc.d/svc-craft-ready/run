@@ -1,0 +1,45 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+# Prints the "READY" banner to the container log once the WebUI serves, so the
+# user can tell the first start has finished.
+FLAG="/run/craft-ready.printed"
+
+# /run is a tmpfs, so the banner prints once per container start.
+if [[ -f "${FLAG}" ]]; then
+    exec sleep infinity
+fi
+
+# Port 3000 is served whatever the user's HTTPS preference. Waits up to 5 minutes.
+ready=0
+for _ in $(seq 1 150); do
+    if (exec 3<>/dev/tcp/127.0.0.1/3000) 2>/dev/null; then
+        exec 3>&- 3<&-
+        ready=1
+        break
+    fi
+    sleep 2
+done
+
+# Gives the app's window time to draw before the announcement.
+[[ "${ready}" -eq 1 ]] && sleep 4
+
+# Printed here so the brand banner sits directly above the status line.
+/usr/local/bin/print-banner.sh "${CRAFT_TITLE} for Unraid" "Selkies web desktop" 2>/dev/null || true
+
+# Plain ANSI codes rather than tput, which needs a terminfo database a minimal
+# container may not have.
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+NAME="${CRAFT_TITLE^^}"
+
+if [[ "${ready}" -eq 1 ]]; then
+    echo -e "  ${GREEN}✓ ${NAME} IS READY${NC} - Open the WebUI via HTTPS on port ${CUSTOM_HTTPS_PORT:-3001}"
+else
+    echo -e "  ${RED}✗ ${NAME} DID NOT BECOME READY${NC} - The WebUI never answered within 5 minutes, check the log above"
+fi
+echo ""
+
+touch "${FLAG}"
+# A longrun that exits would be restarted by s6 and print the banner again.
+exec sleep infinity

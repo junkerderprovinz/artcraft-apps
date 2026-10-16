@@ -1,0 +1,25 @@
+#!/bin/sh
+# labwc runs this with /bin/sh (dash) whatever the shebang says, and dash
+# silently skips bashisms such as [[ ]] and arrays.
+#
+# Single-app session: the app is the only window, and the base's labwc rule
+# maximises it.
+#
+# The launch below must not be an `exec`. labwc keeps running when this script
+# ends, so the base image's svc-watchdog, enabled by RESTART_APP in the
+# Dockerfile, restarts the app by watching for
+#
+#     pgrep -o -u abc -f "sh $HOME/.config/labwc/autostart"
+#
+# and `exec` replaces this process, so that pattern stops matching and a closed
+# app stays closed on an empty desktop.
+
+export XDG_CONFIG_HOME="/config/.config"
+export XDG_DATA_HOME="/config/.local/share"
+export XDG_CACHE_HOME="/config/.cache"
+
+echo "[craft-autostart] launching ${CRAFT_TITLE}" >&2
+
+# The session bus lets the app reach the desktop portal behind its file
+# dialogs; dbus starts the portal on the first request.
+dbus-run-session -- "/usr/bin/${CRAFT_APP}"

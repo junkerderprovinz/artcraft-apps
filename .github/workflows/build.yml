@@ -1,0 +1,283 @@
+name: Build & Push
+
+# Builds every app in apps.json natively per platform, boots each image as a
+# smoke gate, pushes by digest and assembles one multi-arch manifest per app on
+# GHCR. Docker Hub joins once the DOCKERHUB_USERNAME variable and the
+# DOCKERHUB_TOKEN secret are both set. Release branches build and smoke-test
+# without pushing.
+
+on:
+  push:
+    branches: [ main, 'rel/**' ]
+    tags: [ 'v*.*.*' ]
+    paths-ignore:
+      - 'README.md'
+      - 'compose/**'
+      - '.github/release-notes/**'
+      - '.github/assets/screenshots/**'
+  # Weekly, to pick up the Selkies base and Ubuntu's security updates.
+  schedule:
+    - cron: '0 4 * * 0'
+  workflow_dispatch:
+
+jobs:
+  apps:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.read.outputs.list }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Read apps.json
+        id: read
+        run: echo "list=$(jq -c . apps.json)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: apps
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.apps.outputs.list) }}
+        arch: [ amd64, arm64 ]
+        include:
+          - arch: amd64
+            platform: linux/amd64
+            runner: ubuntu-latest
+          - arch: arm64
+            platform: linux/arm64
+            runner: ubuntu-24.04-arm
+    name: build (${{ matrix.app.app }}, ${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+    env:
+      APP: ${{ matrix.app.app }}
+      PUBLISH: ${{ github.ref_type == 'tag' || github.ref_name == 'main' || github.event_name == 'schedule' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+
+      - name: Login to GHCR
+        if: env.PUBLISH == 'true'
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (labels)
+        id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }}
+
+      - name: Build ${{ matrix.arch }} image for smoke test
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: ${{ matrix.platform }}
+          build-args: |
+            APP=${{ matrix.app.app }}
+            APP_TITLE=${{ matrix.app.title }}
+            APP_VERSION=${{ matrix.app.version }}
+          push: false
+          load: true
+          tags: ${{ matrix.app.app }}:smoke-${{ matrix.arch }}
+          cache-from: type=gha,scope=${{ matrix.app.app }}-${{ matrix.arch }}
+
+      # Nothing is pushed unless the WebUI answers and the app is still running
+      # once the session is up. A crash at launch would leave the WebUI serving
+      # an empty desktop, so the port alone proves little.
+      - name: "Smoke test ${{ matrix.arch }}: must serve the WebUI and keep the app running"
+        run: |
+          set -euo pipefail
+          img="$APP:smoke-${{ matrix.arch }}"
+          docker run --rm --entrypoint test "$img" -x "/usr/bin/$APP" \
+            || { echo "❌ /usr/bin/$APP missing, the package did not install"; exit 1; }
+          name=craft-smoke
+          docker run -d --name "$name" --shm-size=1g -p 3001:3001 "$img"
+          deadline=$((SECONDS + 180))
+          while [ "$SECONDS" -lt "$deadline" ]; do
+            if docker logs "$name" 2>&1 | grep -q "IS READY"; then
+              sleep 10
+              if docker exec "$name" pgrep -x "$APP" >/dev/null; then
+                echo "✅ WebUI ready and $APP running after ${SECONDS}s"
+                docker rm -f "$name" >/dev/null
+                exit 0
+              fi
+              echo "❌ $APP is not running after the WebUI came up, logs:"
+              docker logs "$name" || true
+              docker exec "$name" sh -c "tail -40 /config/.config/$APP/logs/*.log" || true
+              docker rm -f "$name" >/dev/null; exit 1
+            fi
+            if [ -z "$(docker ps -q --filter "name=$name")" ]; then
+              echo "❌ container exited early, logs:"; docker logs "$name" || true
+              docker rm -f "$name" >/dev/null; exit 1
+            fi
+            sleep 2
+          done
+          echo "❌ not ready within 180s, logs:"
+          docker logs "$name" || true
+          docker rm -f "$name" >/dev/null
+          exit 1
+
+      - name: Scan image for CVEs (Trivy)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ${{ matrix.app.app }}:smoke-${{ matrix.arch }}
+          format: sarif
+          output: trivy-results.sarif
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "0"
+
+      - name: Upload Trivy results to the Security tab
+        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-${{ matrix.app.app }}-${{ matrix.arch }}
+
+      - name: Push ${{ matrix.arch }} by digest
+        id: push
+        if: env.PUBLISH == 'true'
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: ${{ matrix.platform }}
+          build-args: |
+            APP=${{ matrix.app.app }}
+            APP_TITLE=${{ matrix.app.title }}
+            APP_VERSION=${{ matrix.app.version }}
+          labels: ${{ steps.meta.outputs.labels }}
+          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }},push-by-digest=true,name-canonical=true,push=true
+          cache-from: type=gha,scope=${{ matrix.app.app }}-${{ matrix.arch }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.app.app }}-${{ matrix.arch }}
+
+      - name: Export digest
+        if: env.PUBLISH == 'true'
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.push.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        if: env.PUBLISH == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: digests-${{ matrix.app.app }}-${{ matrix.arch }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    needs: [ apps, build ]
+    if: github.ref_type == 'tag' || github.ref_name == 'main' || github.event_name == 'schedule'
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.apps.outputs.list) }}
+    name: merge (${{ matrix.app.app }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Download digests
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          path: /tmp/digests
+          pattern: digests-${{ matrix.app.app }}-*
+          merge-multiple: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Login to Docker Hub
+        if: ${{ vars.DOCKERHUB_USERNAME != '' }}
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # `latest` moves only for a tag build, and only when that tag is the highest
+      # version in the repo: the first keeps an unreleased merge to main away from
+      # everyone who pulls `latest`, the second keeps a re-cut of an older tag from
+      # dragging `latest` backwards. This job needs the checkout for the tags alone.
+      - name: Checkout (tags for the newest-release check)
+        if: github.ref_type == 'tag'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Is this the newest release tag?
+        id: newest
+        if: github.ref_type == 'tag'
+        run: |
+          set -euo pipefail
+          git fetch --tags --force --quiet
+          newest=$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1)
+          echo "this tag: ${GITHUB_REF_NAME}"
+          echo "newest:   ${newest}"
+          if [ "$newest" = "${GITHUB_REF_NAME}" ]; then
+            echo "is_newest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_newest=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The repo version and the app version count independently, so a release
+      # tags each image with both, as <app version>-r<repo version>, and the app
+      # version alone.
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
+        with:
+          images: |
+            ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }}
+            name=docker.io/${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.app.app }},enable=${{ vars.DOCKERHUB_USERNAME != '' }}
+          tags: |
+            type=semver,pattern=${{ matrix.app.version }}-r{{version}}
+            type=raw,value=${{ matrix.app.version }},enable=${{ github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true' }}
+            type=schedule,pattern=weekly
+            type=raw,value=edge,enable=${{ github.ref_type == 'branch' && github.ref_name == 'main' }}
+            type=raw,value=latest,enable=${{ github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true' }}
+            type=sha,format=short
+
+      - name: Create multi-arch manifests
+        working-directory: /tmp/digests
+        run: |
+          set -euo pipefail
+          src="ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }}"
+          sources=""
+          for d in *; do sources="$sources ${src}@sha256:${d}"; done
+          tagargs=""
+          while IFS= read -r tag; do
+            [ -n "$tag" ] && tagargs="$tagargs -t $tag"
+          done <<< "$DOCKER_METADATA_OUTPUT_TAGS"
+          echo "tags:${tagargs}"
+          # Cross-registry copy (GHCR -> Docker Hub) can hit a transient HTTP/2
+          # PROTOCOL_ERROR on large layers; retry a few times before failing.
+          n=0
+          until docker buildx imagetools create ${tagargs} ${sources}; do
+            n=$((n + 1))
+            if [ "$n" -ge 4 ]; then echo "imagetools create failed after $n attempts"; exit 1; fi
+            echo "imagetools create failed (attempt $n); retrying in $((n * 15))s..."
+            sleep $((n * 15))
+          done
+
+      - name: Inspect
+        run: |
+          docker buildx imagetools inspect ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }}:${{ steps.meta.outputs.version }}

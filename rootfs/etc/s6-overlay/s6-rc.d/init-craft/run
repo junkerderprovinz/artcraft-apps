@@ -1,0 +1,26 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+# Seeds the labwc session for the app. The XDG paths go into the s6 container
+# environment so every process inherits them.
+set -e
+
+mkdir -p /run/s6/container_environment
+set_env() { printf "%s" "$2" > "/run/s6/container_environment/$1"; }
+
+set_env XDG_CONFIG_HOME "/config/.config"
+set_env XDG_DATA_HOME   "/config/.local/share"
+set_env XDG_CACHE_HOME  "/config/.cache"
+
+# init-selkies-config copies the autostart only on first run, so it is copied
+# again on every start to carry an image update's launch command. It stays
+# owned by root, as the base leaves it under RESTART_APP, so the session user
+# cannot swap the program the watchdog keeps alive.
+mkdir -p /config/.config/labwc
+cp -f /defaults/autostart /config/.config/labwc/autostart
+chown root:root /config/.config/labwc/autostart
+chmod 0755 /config/.config/labwc/autostart
+
+mkdir -p /config/.local/share /config/.cache
+chown abc:abc /config/.config /config/.local /config/.local/share /config/.cache
+
+echo "[init-craft] ${CRAFT_TITLE} session ready"

@@ -1,0 +1,92 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  hadolint:
+    name: Hadolint (Dockerfile)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: hadolint/hadolint-action@06be81baf89a55ffd0e24b8f04a4185738dd3387 # v3.5.0
+        with:
+          dockerfile: Dockerfile
+          # DL3008: apt versions stay unpinned, the base image and Ubuntu move
+          #         on their own cadence.
+          # DL3009: the apt lists are cleaned once, at the end of the RUN.
+          # SC2086: the word splitting is intended.
+          ignore: DL3008,DL3009,SC2086
+          failure-threshold: warning
+
+  shellcheck:
+    name: ShellCheck (shell scripts)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Run shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          # All shell scripts shipped in the image: *.sh, the extensionless
+          # s6-rc.d service scripts (run) and the openbox autostart. Shebangs are
+          # honored; the with-contenv scripts carry a "shellcheck shell=bash"
+          # directive.
+          SCRIPTS=$(find rootfs -type f \( -name '*.sh' -o -name 'run' -o -name 'autostart' \))
+
+          if [ -z "${SCRIPTS}" ]; then
+            echo "ERROR: no shell scripts found, the find pattern is broken." >&2
+            exit 1
+          fi
+
+          echo "Checking the following scripts:"
+          echo "${SCRIPTS}"
+          echo "---"
+
+          # -S warning: fail on warnings and up
+          # -x:         follow sourced files
+          # -e SC1091:  allow sourcing files not present at lint time
+          # shellcheck disable=SC2086
+          shellcheck -S warning -x -e SC1091 ${SCRIPTS}
+
+          echo "All scripts passed shellcheck."
+
+  apps:
+    name: apps.json (icons and compose files)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Every app has its icon and compose file
+        run: |
+          set -euo pipefail
+          fail=0
+          for app in $(jq -r '.[].app' apps.json); do
+            for f in ".github/assets/icons/$app.png" "compose/$app.yaml"; do
+              [ -f "$f" ] || { echo "::error::$app: $f missing"; fail=1; }
+            done
+            grep -qix "### $app" README.md || { echo "::error::$app: no README section"; fail=1; }
+          done
+          exit "$fail"
+
+  xml-validate:
+    name: XML Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Validate XML files
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-utils
+          shopt -s nullglob
+          found=0
+          for f in $(find . -name '*.xml' -not -path './.git/*'); do
+            echo "Checking $f"
+            xmllint --noout "$f"
+            found=1
+          done
+          [ "$found" -eq 0 ] && echo "No XML files in this repo (the template lives in unraid-apps), nothing to validate."
+          exit 0

@@ -1,0 +1,43 @@
+NOTICE: Bundled Software in the ArtCraft Apps Container Images
+==============================================================
+
+The GNU Affero General Public License v3.0 (AGPL-3.0, see LICENSE) covers only
+the wrapper assets in this repository:
+  * Dockerfile, apps.json and the rootfs/ overlay
+  * Helper scripts under rootfs/usr/local/bin/ and scripts/
+  * The compose files under compose/
+  * Unraid container templates (maintained in the junkerderprovinz/unraid-apps repo)
+  * README and banner artwork
+
+It does not relicense any software shipped inside the resulting container
+images. Each bundled component keeps its upstream license:
+
+  * CADCraft, DeckCraft, DesignCraft, EffectCraft, FigCraft, FilmCraft,
+    GridCraft, LightCraft, PdfCraft, PhotoCraft, SoundCraft, VectorCraft
+    and WordCraft
+                                 MIT OR Apache-2.0, at your option
+                                 https://github.com/storytold
+                                 (the official release packages, unmodified;
+                                 each ships its own NOTICE and ATTRIBUTION
+                                 with the third-party material it bundles)
+  * The app icons under .github/assets/icons/, taken unmodified from each
+    app's assets/app-icon/ and also used on the banner
+                                 MIT OR Apache-2.0, like the apps
+  * LinuxServer.io baseimage-selkies
+                                 GPL-3.0
+                                 https://github.com/linuxserver/docker-baseimage-selkies
+  * Mesa (llvmpipe, lavapipe)    MIT
+  * xdg-desktop-portal, xdg-desktop-portal-gtk
+                                 LGPL-2.1-or-later
+  * Fonts (Noto, DejaVu, Liberation, Carlito, Caladea)
+                                 OFL-1.1, Bitstream Vera and Apache-2.0
+
+The ArtCraft name, wordmark and mark are trademarks of the ArtCraft Team and
+are not covered by the apps' licenses (see docs/brand/LICENSE-brand.txt in any
+of the app repositories). This project is not affiliated with or endorsed by
+the ArtCraft Team. The apps' own names are used only to say which app an image
+packages.
+
+When you run, redistribute or rebuild the resulting container images, you must
+comply with the licenses of all bundled components in addition to the AGPL-3.0
+license that covers this repository.

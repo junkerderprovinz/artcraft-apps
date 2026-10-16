@@ -78,85 +78,202 @@ The apps draw with Mesa's software renderer, which is plenty for documents and d
 
 ## 2. The apps
 
-Every app has its own image, `junkerderprovinz/<app>`, mirrored at `ghcr.io/junkerderprovinz/<app>`, and its own compose file in [compose/](compose). The pictures are the apps' start screens in a test container.
+Every app has its own image, `junkerderprovinz/<app>`, mirrored at `ghcr.io/junkerderprovinz/<app>`, and its own compose file in [compose/](compose). Each card links the app's upstream repository, and the screenshot below it shows the app's start screen in a test container.
+
+<img src=".github/assets/readme-icons/cadcraft.png" width="84" align="left" alt="CADCraft">
+<a href="https://github.com/storytold/cadcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/cadcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
 
 ### CADCraft
+Computer-aided design and drafting: 2D drawings with layers, blocks, hatches and dimensions, and DXF and DWG files.
 
-Computer-aided design and drafting: 2D drawings with layers, blocks, hatches and dimensions, and DXF and DWG files. [Upstream](https://github.com/storytold/cadcraft) · [compose file](compose/cadcraft.yaml)
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/cadcraft.png" alt="CADCraft with an empty drawing, the drafting tool sets on the left and the layer and property panels on the right" width="90%"></p>
 
-### DeckCraft
+</details>
 
-Presentations and slide shows that open and save PowerPoint decks. [Upstream](https://github.com/storytold/deckcraft) · [compose file](compose/deckcraft.yaml)
+<img src=".github/assets/readme-icons/deckcraft.png" width="84" align="left" alt="DeckCraft">
+<a href="https://github.com/storytold/deckcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/deckcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### DeckCraft
+Presentations and slide shows that open and save PowerPoint decks.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/deckcraft.png" alt="DeckCraft's start screen with a blank presentation and five themes" width="90%"></p>
 
-### DesignCraft
+</details>
 
-Page layout and publishing for print and PDF. [Upstream](https://github.com/storytold/designcraft) · [compose file](compose/designcraft.yaml)
+<img src=".github/assets/readme-icons/designcraft.png" width="84" align="left" alt="DesignCraft">
+<a href="https://github.com/storytold/designcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/designcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### DesignCraft
+Page layout and publishing for print and PDF.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/designcraft.png" alt="DesignCraft's welcome screen with page sizes from Letter to postcard" width="90%"></p>
 
-### EffectCraft
+</details>
 
-Motion graphics and compositing: compositions, keyframes and effects. [Upstream](https://github.com/storytold/effectcraft) · [compose file](compose/effectcraft.yaml)
+<img src=".github/assets/readme-icons/effectcraft.png" width="84" align="left" alt="EffectCraft">
+<a href="https://github.com/storytold/effectcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/effectcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### EffectCraft
+Motion graphics and compositing: compositions, keyframes and effects.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/effectcraft.png" alt="EffectCraft's welcome screen with new project, demo project and templates" width="90%"></p>
 
-### FigCraft
+</details>
 
-Interface design and prototyping: frames, auto layout, components and prototypes. [Upstream](https://github.com/storytold/figcraft) · [compose file](compose/figcraft.yaml)
+<img src=".github/assets/readme-icons/figcraft.png" width="84" align="left" alt="FigCraft">
+<a href="https://github.com/storytold/figcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/figcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### FigCraft
+Interface design and prototyping: frames, auto layout, components and prototypes.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/figcraft.png" alt="FigCraft's recents page with a getting-started list and four templates" width="90%"></p>
 
-### FilmCraft
+</details>
 
-A nonlinear video editor with a timeline, effect controls, captions and export. [Upstream](https://github.com/storytold/filmcraft) · [compose file](compose/filmcraft.yaml)
+<img src=".github/assets/readme-icons/filmcraft.png" width="84" align="left" alt="FilmCraft">
+<a href="https://github.com/storytold/filmcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/filmcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### FilmCraft
+A nonlinear video editor with a timeline, effect controls, captions and export.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/filmcraft.png" alt="FilmCraft with its demo project open: program monitor, project bin and a timeline of six clips over an audio score" width="90%"></p>
 
-### GridCraft
+</details>
 
-A spreadsheet with formulas, charts and Excel workbooks. [Upstream](https://github.com/storytold/gridcraft) · [compose file](compose/gridcraft.yaml)
+<img src=".github/assets/readme-icons/gridcraft.png" width="84" align="left" alt="GridCraft">
+<a href="https://github.com/storytold/gridcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/gridcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### GridCraft
+A spreadsheet with formulas, charts and Excel workbooks.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/gridcraft.png" alt="GridCraft with an empty workbook and the Home ribbon" width="90%"></p>
 
-### LightCraft
+</details>
 
-A photo library and non-destructive raw developer. [Upstream](https://github.com/storytold/lightcraft) · [compose file](compose/lightcraft.yaml)
+<img src=".github/assets/readme-icons/lightcraft.png" width="84" align="left" alt="LightCraft">
+<a href="https://github.com/storytold/lightcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/lightcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### LightCraft
+A photo library and non-destructive raw developer.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/lightcraft.png" alt="LightCraft with a sample photo in the loupe view, the filmstrip below and the light sliders on the right" width="90%"></p>
 
-### PdfCraft
+</details>
 
-A PDF reader and editor: annotate, fill and sign forms, organise pages, redact and run OCR. [Upstream](https://github.com/storytold/pdfcraft) · [compose file](compose/pdfcraft.yaml)
+<img src=".github/assets/readme-icons/pdfcraft.png" width="84" align="left" alt="PdfCraft">
+<a href="https://github.com/storytold/pdfcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/pdfcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### PdfCraft
+A PDF reader and editor: annotate, fill and sign forms, organise pages, redact and run OCR.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/pdfcraft.png" alt="PdfCraft's welcome screen with all tools on the left and the recommended tools in the middle" width="90%"></p>
 
-### PhotoCraft
+</details>
 
-A layered photo editor that opens PSD, Krita, OpenRaster and Affinity files. [Upstream](https://github.com/storytold/photocraft) · [compose file](compose/photocraft.yaml)
+<img src=".github/assets/readme-icons/photocraft.png" width="84" align="left" alt="PhotoCraft">
+<a href="https://github.com/storytold/photocraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/photocraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### PhotoCraft
+A layered photo editor that opens PSD, Krita, OpenRaster and Affinity files.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/photocraft.png" alt="PhotoCraft's start screen with the tool bar, colour picker and layer panels" width="90%"></p>
 
-### SoundCraft
+</details>
 
-Multitrack audio recording, editing and mixing. [Upstream](https://github.com/storytold/soundcraft) · [compose file](compose/soundcraft.yaml)
+<img src=".github/assets/readme-icons/soundcraft.png" width="84" align="left" alt="SoundCraft">
+<a href="https://github.com/storytold/soundcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/soundcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### SoundCraft
+Multitrack audio recording, editing and mixing.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/soundcraft.png" alt="SoundCraft's edit window with the transport, the tempo and meter rulers and an empty track list" width="90%"></p>
 
-### VectorCraft
+</details>
 
-Vector illustration with paths, type and SVG and PDF in and out. [Upstream](https://github.com/storytold/vectorcraft) · [compose file](compose/vectorcraft.yaml)
+<img src=".github/assets/readme-icons/vectorcraft.png" width="84" align="left" alt="VectorCraft">
+<a href="https://github.com/storytold/vectorcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/vectorcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### VectorCraft
+Vector illustration with paths, type and SVG and PDF in and out.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/vectorcraft.png" alt="VectorCraft's welcome screen with page presets from Letter to a square social post" width="90%"></p>
 
-### WordCraft
+</details>
 
-A word processor that opens and saves Word documents. [Upstream](https://github.com/storytold/wordcraft) · [compose file](compose/wordcraft.yaml)
+<img src=".github/assets/readme-icons/wordcraft.png" width="84" align="left" alt="WordCraft">
+<a href="https://github.com/storytold/wordcraft"><img src="https://img.shields.io/badge/Upstream-393939?style=for-the-badge&logo=github&logoColor=white" align="right" alt="Upstream repository"></a>
+<a href="compose/wordcraft.yaml"><img src="https://img.shields.io/badge/Docker%20compose-1d63ed?style=for-the-badge&logo=docker&logoColor=white" align="right" alt="Docker compose file"></a>
+
+### WordCraft
+A word processor that opens and saves Word documents.
+
+<br clear="all">
+
+<details><summary>Screenshot</summary>
 
 <p align="center"><img src=".github/assets/screenshots/wordcraft.png" alt="WordCraft's start page with a blank document, a sample handbook, a letter and a résumé" width="90%"></p>
+
+</details>
 
 <br>
 

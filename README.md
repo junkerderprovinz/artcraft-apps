@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/artcraft-apps-banner-dark.png">
-    <img src=".github/assets/artcraft-apps-banner.png" alt="ArtCraft Apps: thirteen studios, one server" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/artcraft-apps-banner-dark.png">
+    <img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/artcraft-apps-banner.png" alt="ArtCraft Apps: thirteen studios, one server" width="100%">
   </picture>
 </p>
 

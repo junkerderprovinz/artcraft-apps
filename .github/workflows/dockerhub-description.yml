@@ -1,12 +1,5 @@
-# Push the README to the Docker Hub repo's Overview, on demand and nothing else.
-#
-# The image build already syncs the description after every push, but only after
-# a full multi-arch build. That makes it useless for answering the one question
-# worth answering when the sync starts failing: is the credential broken, or is
-# this repo's secret wrong? A run that builds nothing isolates the credential.
-#
-# Manual only. It never builds, never pushes an image, and touches nothing but
-# the description text on Docker Hub.
+# Pushes the README and short description to every app's Docker Hub repo
+# without a build, to tell a broken credential apart from a broken build.
 name: Docker Hub description
 
 on:
@@ -16,21 +9,33 @@ permissions:
   contents: read
 
 jobs:
+  apps:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.read.outputs.list }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Read apps.json
+        id: read
+        run: echo "list=$(jq -c . apps.json)" >> "$GITHUB_OUTPUT"
+
   sync:
-    name: Sync README to Docker Hub
+    needs: apps
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.apps.outputs.list) }}
+    name: sync (${{ matrix.app.app }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      # No gate and no continue-on-error: this workflow exists to make a failure
-      # visible, so a missing secret or a refused login must turn the run red
-      # instead of passing quietly.
       - name: Sync README to Docker Hub
         uses: peter-evans/dockerhub-description@1b9a80c056b620d92cedb9d9b5a223409c68ddfa # v5
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ vars.DOCKERHUB_USERNAME }}/artcraft-apps
-          short-description: "The ArtCraft apps on Unraid: one Selkies web desktop per app, from PhotoCraft to WordCraft"
+          repository: ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.app.app }}
+          short-description: "${{ matrix.app.title }} for Unraid, in your browser via Selkies: ${{ matrix.app.kind }}."
           enable-url-completion: true

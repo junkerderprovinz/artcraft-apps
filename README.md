@@ -23,11 +23,18 @@ Each of the thirteen <a href="https://github.com/storytold">ArtCraft</a> apps ge
 
 <!-- download-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(0,0,841.9,245.3))" alt="In Unraid&#x27;s Community Applications soon" width="160" height="46.618">
+  <a href="https://ca.unraid.net/apps?q=craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(0,0,841.9,245.3))" alt="Install from Unraid&#x27;s Community Applications" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(866,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
+  <a href="https://mos-official.net/apps.html?search=Craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(866,0,841.9,245.3))" alt="Install from the MOS Hub" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(1732,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/zimaos-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(1732,0,841.9,245.3))" alt="Install from the ZimaOS and CasaOS store" width="160" height="46.618"></a>
+  &nbsp;
+  <a href="https://github.com/junkerderprovinz/umbrel-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(2598,0,841.9,245.3))" alt="Install from the umbrelOS community app store" width="160" height="46.618"></a>
+</p>
+<p align="center">
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(3464,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
+  &nbsp;
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(4330,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
 </p>
 <!-- /download-buttons -->
 
@@ -43,11 +50,11 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <!-- give-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(2598,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(5196,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(3464,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(6062,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(4330,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
+  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(6928,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
 </p>
 <!-- /give-buttons -->
 
@@ -312,6 +319,9 @@ Swap `photocraft` for any app from the list above. Open `https://<server-ip>:300
 
 - **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
+- **MOS:** install the app you want from the [MOS Hub](https://mos-official.net/apps.html?search=Craft).
+- **ZimaOS and CasaOS:** add the [community store](https://github.com/junkerderprovinz/zimaos-apps#install) and install the app you want from it.
+- **umbrelOS:** add the [community app store](https://github.com/junkerderprovinz/umbrel-apps#install) and install the app you want from it.
 
 <br>
 
@@ -333,11 +343,11 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <!-- give-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(2598,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(5196,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(3464,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(6062,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=43f5bd4d4586#svgView(viewBox(4330,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
+  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=977e0b9ec7fb#svgView(viewBox(6928,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
 </p>
 <!-- /give-buttons -->
 

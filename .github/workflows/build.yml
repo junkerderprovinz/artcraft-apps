@@ -10,15 +10,24 @@ on:
   push:
     branches: [ main, 'rel/**' ]
     tags: [ 'v*.*.*' ]
-    paths-ignore:
-      - 'README.md'
-      - 'compose/**'
-      - '.github/release-notes/**'
-      - '.github/assets/screenshots/**'
+    # Every build covers all 13 apps on two architectures, so only changes
+    # that reach the image start one. Tag pushes ignore this filter.
+    paths:
+      - 'Dockerfile'
+      - 'apps.json'
+      - 'rootfs/**'
+      - '.github/assets/banner-raw.txt'
+      - '.github/assets/icons/**'
+      - '.github/workflows/build.yml'
   # Weekly, to pick up the Selkies base and Ubuntu's security updates.
   schedule:
     - cron: '0 4 * * 0'
   workflow_dispatch:
+
+# Merging several pull requests in a row builds only the last of them.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
 
 jobs:
   apps:

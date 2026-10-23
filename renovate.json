@@ -31,10 +31,11 @@
       ]
     },
     {
-      "description": "GitHub Actions: auto-merge all updates (major/minor/patch/digest). No CI runs on PRs, so platformAutomerge merges as soon as the PR is open.",
+      "description": "GitHub Actions: one weekly PR for every update, auto-merged. No CI runs on PRs, so platformAutomerge merges as soon as the PR is open.",
       "matchManagers": [
         "github-actions"
       ],
+      "groupName": "GitHub Actions",
       "matchUpdateTypes": [
         "major",
         "minor",

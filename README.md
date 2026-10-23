@@ -302,8 +302,8 @@ Swap `photocraft` for any app from the list above. Open `https://<server-ip>:300
 | Tag | What it is |
 | --- | --- |
 | `latest` | The newest release of this repository. |
-| `0.9.0` | The app version, moved to the newest release that ships it. |
-| `0.9.0-r1.0.0` | The app version inside one release of this repository, fixed. |
+| `0.14.0` | The app version, moved to the newest release that ships it. |
+| `0.14.0-r1.1.0` | The app version inside one release of this repository, fixed. |
 | `edge` | The tip of `main`. |
 
 ### Other Docker hosts

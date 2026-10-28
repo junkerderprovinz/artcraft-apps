@@ -1,15 +1,15 @@
 [
-  { "app": "cadcraft",    "title": "CADCraft",    "version": "0.13.0",  "kind": "computer-aided design and drafting" },
-  { "app": "deckcraft",   "title": "DeckCraft",   "version": "0.11.1",  "kind": "presentations and slide shows" },
-  { "app": "designcraft", "title": "DesignCraft", "version": "0.13.0",  "kind": "page layout and publishing" },
-  { "app": "effectcraft", "title": "EffectCraft", "version": "0.17.0", "kind": "motion graphics and compositing" },
-  { "app": "figcraft",    "title": "FigCraft",    "version": "0.11.2",  "kind": "interface design and prototyping" },
-  { "app": "filmcraft",   "title": "FilmCraft",   "version": "0.13.0",  "kind": "nonlinear video editing" },
-  { "app": "gridcraft",   "title": "GridCraft",   "version": "0.12.1",  "kind": "spreadsheets" },
-  { "app": "lightcraft",  "title": "LightCraft",  "version": "0.14.0",  "kind": "photo library and raw development" },
-  { "app": "pdfcraft",    "title": "PdfCraft",    "version": "0.14.0",  "kind": "reading and editing PDFs" },
-  { "app": "photocraft",  "title": "PhotoCraft",  "version": "0.16.0",  "kind": "photo editing" },
-  { "app": "soundcraft",  "title": "SoundCraft",  "version": "0.13.1",  "kind": "audio recording and mixing" },
-  { "app": "vectorcraft", "title": "VectorCraft", "version": "0.17.0", "kind": "vector illustration" },
-  { "app": "wordcraft",   "title": "WordCraft",   "version": "0.11.0",  "kind": "word processing" }
+  { "app": "cadcraft",    "title": "CADCraft",    "version": "0.14.0",  "kind": "computer-aided design and drafting" },
+  { "app": "deckcraft",   "title": "DeckCraft",   "version": "0.12.0",  "kind": "presentations and slide shows" },
+  { "app": "designcraft", "title": "DesignCraft", "version": "0.14.0",  "kind": "page layout and publishing" },
+  { "app": "effectcraft", "title": "EffectCraft", "version": "0.18.0", "kind": "motion graphics and compositing" },
+  { "app": "figcraft",    "title": "FigCraft",    "version": "0.12.1",  "kind": "interface design and prototyping" },
+  { "app": "filmcraft",   "title": "FilmCraft",   "version": "0.14.0",  "kind": "nonlinear video editing" },
+  { "app": "gridcraft",   "title": "GridCraft",   "version": "0.13.0",  "kind": "spreadsheets" },
+  { "app": "lightcraft",  "title": "LightCraft",  "version": "0.15.0",  "kind": "photo library and raw development" },
+  { "app": "pdfcraft",    "title": "PdfCraft",    "version": "0.15.0",  "kind": "reading and editing PDFs" },
+  { "app": "photocraft",  "title": "PhotoCraft",  "version": "0.17.0",  "kind": "photo editing" },
+  { "app": "soundcraft",  "title": "SoundCraft",  "version": "0.14.0",  "kind": "audio recording and mixing" },
+  { "app": "vectorcraft", "title": "VectorCraft", "version": "0.18.0", "kind": "vector illustration" },
+  { "app": "wordcraft",   "title": "WordCraft",   "version": "0.12.0",  "kind": "word processing" }
 ]

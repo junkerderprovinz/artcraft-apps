@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://github.com/junkerderprovinz/artcraft-apps/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/artcraft-apps/build.yml?branch=main&label=Build&style=for-the-badge&logo=githubactions&logoColor=white" alt="Build" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/artcraft-apps/actions/workflows/lint.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/artcraft-apps/lint.yml?branch=main&label=Lint&style=for-the-badge&logo=githubactions&logoColor=white" alt="Lint" height="36"></a>&nbsp;
-  <a href="#2-the-apps"><img src="https://img.shields.io/badge/Images-13-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Images: 13" height="36"></a>&nbsp;
+  <a href="#4-the-apps"><img src="https://img.shields.io/badge/Images-13-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Images: 13" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz?tab=packages&repo_name=artcraft-apps"><img src="https://img.shields.io/badge/Arch-amd64%20%7C%20arm64-success?style=for-the-badge&logo=linux&logoColor=white" alt="Arch" height="36"></a>&nbsp;
   <a href="https://github.com/storytold"><img src="https://img.shields.io/badge/Apps-ArtCraft-2f7bf5?style=for-the-badge&logoColor=white" alt="ArtCraft" height="36"></a>&nbsp;
   <a href="https://ca.unraid.net/apps?q=craft"><img src="https://img.shields.io/badge/Unraid-Templates-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
@@ -21,27 +21,44 @@ Each of the thirteen <a href="https://github.com/storytold">ArtCraft</a> apps ge
 <a href="https://github.com/selkies-project/selkies">Selkies</a> streams it to the browser as video, so a brush stroke or a scrub through the timeline stays smooth.
 </p>
 
+<br>
+
+<p><a id="table-of-contents" href="#table-of-contents"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/table-of-contents-dark.svg"><img src=".github/assets/sections/table-of-contents.svg" alt="Table of Contents" width="100%"></picture></a></p>
+
+1. [Download](#1-download)
+2. [Support](#2-support)
+3. [What it does](#3-what-it-does)
+4. [The apps](#4-the-apps)
+5. [Getting started](#5-getting-started)
+6. [How AI is used here](#6-how-ai-is-used-here)
+
+<br>
+
+<p><a id="1-download" href="#1-download"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/1-download-dark.svg"><img src=".github/assets/sections/1-download.svg" alt="1. Download" width="100%"></picture></a></p>
+
 <!-- download-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(0,0,841.9,245.3))" alt="Server" width="160" height="46.618">
+  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/group-server-dark.svg"><img src=".github/assets/sections/group-server.svg" alt="Server" width="100%"></picture>
 </p>
 <p align="center">
-  <a href="https://ca.unraid.net/apps?q=craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(866,0,841.9,245.3))" alt="Install from Unraid&#x27;s Community Applications" width="160" height="46.618"></a>
+  <a href="https://ca.unraid.net/apps?q=craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(0,0,841.9,245.3))" alt="Install from Unraid&#x27;s Community Applications" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://mos-official.net/apps.html?search=Craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(1732,0,841.9,245.3))" alt="Install from the MOS Hub" width="160" height="46.618"></a>
+  <a href="https://mos-official.net/apps.html?search=Craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(866,0,841.9,245.3))" alt="Install from the MOS Hub" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/zimaos-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(2598,0,841.9,245.3))" alt="Install from the ZimaOS and CasaOS store" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/zimaos-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(1732,0,841.9,245.3))" alt="Install from the ZimaOS and CasaOS store" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/umbrel-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(3464,0,841.9,245.3))" alt="Install from the umbrelOS community app store" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/umbrel-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(2598,0,841.9,245.3))" alt="Install from the umbrelOS community app store" width="160" height="46.618"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(4330,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(3464,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(5196,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(4330,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
 </p>
 <!-- /download-buttons -->
 
 <br>
+
+<p><a id="2-support" href="#2-support"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/2-support-dark.svg"><img src=".github/assets/sections/2-support.svg" alt="2. Support" width="100%"></picture></a></p>
 
 <p align="center">
 A one-knight job: I build it, keep it running, work through the issues and add what people ask for, until nothing is missing. It is free, with no accounts, no telemetry, no ads and no paid tier. No asterisk anywhere. Nothing readable ever leaves your own walls. Forged on evenings and weekends, with heart and stubbornness.
@@ -53,27 +70,17 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <!-- give-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(6062,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(5196,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(6928,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(6062,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(7794,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
+  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(6928,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
 </p>
 <!-- /give-buttons -->
 
 <br>
 
-## Table of Contents
-
-1. [What it does](#1-what-it-does)
-2. [The apps](#2-the-apps)
-3. [Getting started](#3-getting-started)
-4. [How AI is used here](#4-how-ai-is-used-here)
-5. [Support this project](#5-support-this-project)
-
-<br>
-
-## 1. What it does
+<p><a id="3-what-it-does" href="#3-what-it-does"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/3-what-it-does-dark.svg"><img src=".github/assets/sections/3-what-it-does.svg" alt="3. What it does" width="100%"></picture></a></p>
 
 - **One image per app.** PhotoCraft, FilmCraft, WordCraft and the rest each come as their own image and their own Unraid template, so you install the three you use and skip the other ten. Every image is built for amd64 and arm64.
 - **The official release packages.** Each image installs the app's `.deb` from its GitHub release and checks it against the release's `SHA256SUMS.txt` first. `apps.json` pins the version of every app.
@@ -86,7 +93,7 @@ The apps draw with Mesa's software renderer, which is plenty for documents and d
 
 <br>
 
-## 2. The apps
+<p><a id="4-the-apps" href="#4-the-apps"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/4-the-apps-dark.svg"><img src=".github/assets/sections/4-the-apps.svg" alt="4. The apps" width="100%"></picture></a></p>
 
 Every app has its own image, `junkerderprovinz/<app>`, mirrored at `ghcr.io/junkerderprovinz/<app>`, and its own compose file in [compose/](compose). Each card links the app's upstream repository, and the screenshot below it shows the app's start screen in a test container.
 
@@ -287,7 +294,7 @@ A word processor that opens and saves Word documents.
 
 <br>
 
-## 3. Getting started
+<p><a id="5-getting-started" href="#5-getting-started"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/5-getting-started-dark.svg"><img src=".github/assets/sections/5-getting-started.svg" alt="5. Getting started" width="100%"></picture></a></p>
 
 On Unraid, search Community Applications for the app you want, PhotoCraft for example. Map the folder with your files to `/storage` (the template uses `/mnt/user`, which reaches all shares), then open the WebUI on the HTTPS port, `3001` by default. Each app is its own template, so two apps on one server need two different ports.
 
@@ -328,7 +335,7 @@ Swap `photocraft` for any app from the list above. Open `https://<server-ip>:300
 
 <br>
 
-## 4. How AI is used here
+<p><a id="6-how-ai-is-used-here" href="#6-how-ai-is-used-here"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/6-how-ai-is-used-here-dark.svg"><img src=".github/assets/sections/6-how-ai-is-used-here.svg" alt="6. How AI is used here" width="100%"></picture></a></p>
 
 One knight builds this, and AI is one of the tools I work with, the same way I work with an editor or a compiler. It helps me write code and documentation and it checks my work, and that saves me a good many evenings. It does not make the decisions, though. I read and understand everything before it ships, and if something here breaks, that is on me and not on the tool.
 
@@ -336,23 +343,7 @@ You do not have to take my word for it. The code is open and every release note 
 
 <br>
 
-## 5. Support this project
-
 Questions, bugs, ideas or feature requests? Please [open a GitHub issue](https://github.com/junkerderprovinz/artcraft-apps/issues). Bugs in an app itself belong to the ArtCraft project; the app's upstream link above leads to its tracker.
-
-A one-knight job: I build it, keep it running, work through the issues and add what people ask for, until nothing is missing. It is free, with no accounts, no telemetry, no ads and no paid tier. No asterisk anywhere. Nothing readable ever leaves your own walls. Forged on evenings and weekends, with heart and stubbornness.
-
-If it has earned a place on your server or computer, toss a coin to your knight: it helps cover the costs and keeps the project alive. It also makes this knight's heart beat a little faster. Three ways below, whichever suits you.
-
-<!-- give-buttons: written by scripts/gen_download_buttons.py -->
-<p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(6062,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
-  &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(6928,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
-  &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=074d32ddf165#svgView(viewBox(7794,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
-</p>
-<!-- /give-buttons -->
 
 <br>
 

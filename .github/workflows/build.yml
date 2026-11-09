@@ -19,30 +19,57 @@ on:
       - '.github/assets/banner-raw.txt'
       - '.github/assets/icons/**'
       - '.github/workflows/build.yml'
-  # Weekly, to pick up the Selkies base and Ubuntu's security updates.
+  # Weekly and on demand, the newest release is rebuilt without the layer cache
+  # to pick up the Selkies base and Ubuntu's security updates.
   schedule:
     - cron: '0 4 * * 0'
   workflow_dispatch:
 
-# Merging several pull requests in a row builds only the last of them.
+# Merging several pull requests in a row builds only the last of them. A
+# rebuild of the newest release runs apart from pushes, so neither cancels the
+# other.
 concurrency:
-  group: build-${{ github.ref }}
+  group: build-${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && 'rebuild' || github.ref }}
   cancel-in-progress: ${{ github.ref_type != 'tag' }}
 
 jobs:
+  # Rebuilds refresh the newest release, which is what people run, not the
+  # tip of main.
+  release:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.newest.outputs.tag }}
+    steps:
+      - name: Find the newest release
+        id: newest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(gh release view -R "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+          echo "rebuilding $tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
   apps:
+    needs: release
+    if: ${{ !failure() && !cancelled() }}
     runs-on: ubuntu-latest
     outputs:
       list: ${{ steps.read.outputs.list }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ needs.release.outputs.tag }}
       - name: Read apps.json
         id: read
         run: echo "list=$(jq -c . apps.json)" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: apps
+    needs: [ release, apps ]
+    if: ${{ !failure() && !cancelled() }}
     strategy:
       fail-fast: false
       matrix:
@@ -63,7 +90,7 @@ jobs:
       security-events: write
     env:
       APP: ${{ matrix.app.app }}
-      PUBLISH: ${{ github.ref_type == 'tag' || github.ref_name == 'main' || github.event_name == 'schedule' }}
+      PUBLISH: ${{ github.ref_type == 'tag' || github.ref_name == 'main' || needs.release.outputs.tag != '' }}
 
     steps:
       # The image is about 3 GB and Trivy exports it once more to scan it, which
@@ -75,6 +102,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ needs.release.outputs.tag }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
@@ -107,6 +136,7 @@ jobs:
           load: true
           tags: ${{ matrix.app.app }}:smoke-${{ matrix.arch }}
           cache-from: type=gha,scope=${{ matrix.app.app }}-${{ matrix.arch }}
+          no-cache: ${{ needs.release.outputs.tag != '' }}
 
       # Nothing is pushed unless the WebUI answers and the app is still running
       # once the session is up. A crash at launch would leave the WebUI serving
@@ -178,6 +208,7 @@ jobs:
           outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }},push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha,scope=${{ matrix.app.app }}-${{ matrix.arch }}
           cache-to: type=gha,mode=max,scope=${{ matrix.app.app }}-${{ matrix.arch }}
+          no-cache: ${{ needs.release.outputs.tag != '' }}
 
       - name: Export digest
         if: env.PUBLISH == 'true'
@@ -196,8 +227,8 @@ jobs:
           retention-days: 1
 
   merge:
-    needs: [ apps, build ]
-    if: github.ref_type == 'tag' || github.ref_name == 'main' || github.event_name == 'schedule'
+    needs: [ release, apps, build ]
+    if: ${{ !failure() && !cancelled() && (github.ref_type == 'tag' || github.ref_name == 'main' || needs.release.outputs.tag != '') }}
     strategy:
       fail-fast: false
       matrix:
@@ -258,7 +289,7 @@ jobs:
 
       # The repo version and the app version count independently, so a release
       # tags each image with both, as <app version>-r<repo version>, and the app
-      # version alone.
+      # version alone. A rebuild of the newest release sets the same tags.
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6
@@ -267,12 +298,11 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/${{ matrix.app.app }}
             name=docker.io/${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.app.app }},enable=${{ vars.DOCKERHUB_USERNAME != '' }}
           tags: |
-            type=semver,pattern=${{ matrix.app.version }}-r{{version}}
-            type=raw,value=${{ matrix.app.version }},enable=${{ github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true' }}
-            type=schedule,pattern=weekly
-            type=raw,value=edge,enable=${{ github.ref_type == 'branch' && github.ref_name == 'main' }}
-            type=raw,value=latest,enable=${{ github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true' }}
-            type=sha,format=short
+            type=semver,pattern=${{ matrix.app.version }}-r{{version}},value=${{ needs.release.outputs.tag }}
+            type=raw,value=${{ matrix.app.version }},enable=${{ (github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true') || needs.release.outputs.tag != '' }}
+            type=raw,value=edge,enable=${{ github.ref_type == 'branch' && github.ref_name == 'main' && needs.release.outputs.tag == '' }}
+            type=raw,value=latest,enable=${{ (github.ref_type == 'tag' && steps.newest.outputs.is_newest == 'true') || needs.release.outputs.tag != '' }}
+            type=sha,format=short,enable=${{ needs.release.outputs.tag == '' }}
 
       - name: Create multi-arch manifests
         working-directory: /tmp/digests

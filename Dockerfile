@@ -8,7 +8,7 @@
 # the GPU when one is passed in and fall back to Mesa's software drivers
 # otherwise.
 
-ARG BASE_TAG=ubunturesolute@sha256:cdb423bb9c9a41c1224cbee81784615ac4d469460f9e80881b23baf62ac2c1c3
+ARG BASE_TAG=ubunturesolute@sha256:b1bb00f7eb2f4df3ad87f621aa046379777cd5a5aa6c26ba7bca4f8a49094f2a
 FROM ghcr.io/linuxserver/baseimage-selkies:${BASE_TAG}
 
 ARG APP

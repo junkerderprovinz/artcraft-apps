@@ -58,6 +58,8 @@ jobs:
     needs: release
     if: ${{ !failure() && !cancelled() }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       list: ${{ steps.read.outputs.list }}
     steps:

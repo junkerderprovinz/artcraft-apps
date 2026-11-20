@@ -19,6 +19,16 @@ on:
       - '.github/assets/banner-raw.txt'
       - '.github/assets/icons/**'
       - '.github/workflows/build.yml'
+  # A pull request builds and smoke-tests the image but pushes nothing.
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+      - 'apps.json'
+      - 'rootfs/**'
+      - '.github/assets/banner-raw.txt'
+      - '.github/assets/icons/**'
+      - '.github/workflows/build.yml'
   # Weekly and on demand, the newest release is rebuilt without the layer cache
   # to pick up the Selkies base and Ubuntu's security updates.
   schedule:

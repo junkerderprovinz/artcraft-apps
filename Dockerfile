@@ -8,6 +8,7 @@
 # the GPU when one is passed in and fall back to Mesa's software drivers
 # otherwise.
 
+# renovate: datasource=docker depName=ghcr.io/linuxserver/baseimage-selkies
 ARG BASE_TAG=ubunturesolute@sha256:6c5843fa3df0c9463d0c0d97f17f9d974704a63e43fc146526f5c67e29c5f2ba
 FROM ghcr.io/linuxserver/baseimage-selkies:${BASE_TAG}
 

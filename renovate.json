@@ -6,22 +6,6 @@
   ],
   "packageRules": [
     {
-      "description": "Docker: auto-merge digest pins and digest refreshes (same tag, new build). Major/minor stay open for review.",
-      "matchManagers": [
-        "dockerfile",
-        "docker-compose"
-      ],
-      "matchUpdateTypes": [
-        "pinDigest",
-        "digest"
-      ],
-      "automerge": true,
-      "commitMessagePrefix": "ci:",
-      "labels": [
-        "docker"
-      ]
-    },
-    {
       "description": "ArtCraft apps: one weekly PR for every new upstream release, reviewed and shipped with the next release",
       "matchManagers": [
         "custom.regex"

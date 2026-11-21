@@ -68,6 +68,8 @@ RUN set -eux; \
     grep " ${deb}\$" SHA256SUMS.txt > deb.sha256; \
     sha256sum -c deb.sha256; \
     apt-get update; \
+    # The upgrade takes the security fixes published since the base image was built.
+    DEBIAN_FRONTEND=noninteractive apt-get upgrade -y; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         "/tmp/${deb}" \
         mesa-vulkan-drivers libegl-mesa0 libgl1-mesa-dri \

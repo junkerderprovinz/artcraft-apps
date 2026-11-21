@@ -30,7 +30,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: junkerderprovinz/junkerderprovinz/.github/workflows/os-updates.yml@7859a8c4da40e645b49c2bf7a7bef78edef44228 # main
+    uses: junkerderprovinz/junkerderprovinz/.github/workflows/os-updates.yml@b4eea1ad283b14c26e84c4ab3226ac91c778c577 # main
     with:
       images: ${{ needs.apps.outputs.images }}
       dockerhub-user: ${{ vars.DOCKERHUB_USERNAME }}

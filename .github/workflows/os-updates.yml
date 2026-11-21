@@ -1,0 +1,38 @@
+name: OS updates
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # The released apps.json, since an app added on main has no image yet.
+  apps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      images: ${{ steps.apps.outputs.images }}
+    steps:
+      - id: apps
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(gh release view -R "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+          images=$(gh api -H "Accept: application/vnd.github.raw" "repos/$GITHUB_REPOSITORY/contents/apps.json?ref=$tag" | jq -r '[.[].app] | join(" ")')
+          echo "images=$images" >> "$GITHUB_OUTPUT"
+
+  refresh:
+    needs: apps
+    permissions:
+      contents: read
+      packages: write
+    uses: junkerderprovinz/junkerderprovinz/.github/workflows/os-updates.yml@7859a8c4da40e645b49c2bf7a7bef78edef44228 # main
+    with:
+      images: ${{ needs.apps.outputs.images }}
+      dockerhub-user: ${{ vars.DOCKERHUB_USERNAME }}
+    secrets:
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

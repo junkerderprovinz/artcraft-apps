@@ -9,11 +9,12 @@
  * are MIT OR Apache-2.0 like the apps. They sit in one row under the name and
  * the claim and are embedded unchanged in both themes, since each is a tile
  * that reads on a light and a dark ground. Name in Open Sans (OFL), claim in
- * Lato (OFL) grey, both rendered to vector paths (opentype.js) so the SVG
+ * Bree Light grey, both rendered to vector paths (opentype.js) so the SVG
  * needs no font.
  *
- * Deps: `npm i -g @resvg/resvg-js opentype.js`. Fonts (OFL) are fetched at
- * runtime to the OS temp dir and never committed. Run:
+ * Deps: `npm i -g @resvg/resvg-js opentype.js`. Open Sans is fetched at
+ * runtime to the OS temp dir and never committed. Bree is read as TTF from
+ * HOUSE_FONTS (default %LOCALAPPDATA%\halleluja-fonts). Run:
  *   node .github/assets/gen-banner.mjs
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -41,7 +42,7 @@ const THEMES = [
 
 const apps = JSON.parse(readFileSync(join(__dir, "..", "..", "apps.json"), "utf8")).map((a) => a.app);
 
-// Fonts (OFL): Open Sans for the wordmark, Lato for the claim, fetched and never committed.
+// Open Sans (OFL) for the wordmark, fetched and never committed.
 // Verify Content-Length so a truncated download can't silently break glyph outlines
 // (a short file still parses, but the tail glyphs render broken).
 async function font(url, file) {
@@ -64,14 +65,16 @@ async function font(url, file) {
   return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength));
 }
 const openSans = await font("https://github.com/google/fonts/raw/main/ofl/opensans/OpenSans%5Bwdth,wght%5D.ttf", "stellarium-OpenSans.ttf");
-const lato = await font("https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf", "stellarium-Lato-Regular.ttf");
+// The house typeface is licensed, so it is read from a local folder and never committed.
+const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
+const bree = opentype.parse(readFileSync(join(fonts, "bree-light.ttf")).buffer);
 
 // Name and claim centred above the icon row.
 const em = (f, s) => s / f.unitsPerEm;
 const nameAsc = openSans.ascender * em(openSans, nameSize);
 const nameDesc = -openSans.descender * em(openSans, nameSize);
-const claimAsc = lato.ascender * em(lato, claimSize);
-const claimDesc = -lato.descender * em(lato, claimSize);
+const claimAsc = bree.ascender * em(bree, claimSize);
+const claimDesc = -bree.descender * em(bree, claimSize);
 const blockH = nameAsc + nameDesc + lineGap + claimAsc + claimDesc;
 const top = (ICON_Y - blockH) / 2 + 10;
 const nameBaseline = top + nameAsc;
@@ -83,7 +86,7 @@ const centred = (f, text, size) => Math.round((W - f.getAdvanceWidth(text, size)
 const glyphD = (font, text, x, baseline, size) =>
   font.getPaths(text, x, baseline, size).map((p) => p.toPathData(2)).filter(Boolean);
 const nameD = glyphD(openSans, NAME, centred(openSans, NAME, nameSize), nameBaseline, nameSize);
-const claimD = glyphD(lato, CLAIM, centred(lato, CLAIM, claimSize), claimBaseline, claimSize);
+const claimD = glyphD(bree, CLAIM, centred(bree, CLAIM, claimSize), claimBaseline, claimSize);
 const paths = (ds, fill) => ds.map((d) => `<path d="${d}" fill="${fill}"/>`).join("");
 
 const rowW = apps.length * ICON + (apps.length - 1) * ICON_GAP;

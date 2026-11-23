@@ -7,7 +7,7 @@
   { "app": "filmcraft",   "title": "FilmCraft",   "version": "0.20.1",  "kind": "nonlinear video editing" },
   { "app": "gridcraft",   "title": "GridCraft",   "version": "0.19.1",  "kind": "spreadsheets" },
   { "app": "lightcraft",  "title": "LightCraft",  "version": "0.21.1",  "kind": "photo library and raw development" },
-  { "app": "pdfcraft",    "title": "PdfCraft",    "version": "0.21.1",  "kind": "reading and editing PDFs" },
+  { "app": "pdfcraft",    "title": "PdfCraft",    "version": "0.22.0",  "kind": "reading and editing PDFs" },
   { "app": "photocraft",  "title": "PhotoCraft",  "version": "0.23.1",  "kind": "photo editing" },
   { "app": "soundcraft",  "title": "SoundCraft",  "version": "0.20.1",  "kind": "audio recording and mixing" },
   { "app": "vectorcraft", "title": "VectorCraft", "version": "0.24.1", "kind": "vector illustration" },

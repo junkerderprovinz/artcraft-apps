@@ -3,12 +3,12 @@ name: Build & Push
 # Builds every app in apps.json natively per platform, boots each image as a
 # smoke gate, pushes by digest and assembles one multi-arch manifest per app on
 # GHCR. Docker Hub joins once the DOCKERHUB_USERNAME variable and the
-# DOCKERHUB_TOKEN secret are both set. Release branches build and smoke-test
+# DOCKERHUB_TOKEN secret are both set. Other branches build and smoke-test
 # without pushing.
 
 on:
   push:
-    branches: [ main, 'rel/**' ]
+    branches: [ '**', '!renovate/**' ]
     tags: [ 'v*.*.*' ]
     # Every build covers all 13 apps on two architectures, so only changes
     # that reach the image start one. Tag pushes ignore this filter.

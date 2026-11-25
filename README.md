@@ -328,6 +328,8 @@ Swap `photocraft` for any app from the list above. Open `https://<server-ip>:300
 [compose/](compose) has one file per app for any Linux server with Docker. Put the one you want in a folder of its own, point the folders under `volumes` at your files and start it with `docker compose up -d`. The folders are created next to the file.
 
 - **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
+- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
+- **QNAP:** in Container Station, create an application from the file.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install the app you want from the [MOS Hub](https://mos-official.net/apps.html?search=Craft).
 - **ZimaOS and CasaOS:** add the [community store](https://github.com/junkerderprovinz/zimaos-apps#install) and install the app you want from it.

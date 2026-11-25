@@ -15,6 +15,9 @@ BUTTONS = {
     "umbrel": "https://github.com/junkerderprovinz/umbrel-apps#install",
     # One compose file per app, so this leads to the folder that holds them.
     "compose": "https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose",
+    "synology": "#synology",
+    "qnap": "#qnap",
+    "ugreen": "#ugreen",
     # A release's "Source code (zip)" is the whole repository at that tag, and
     # GitHub gives the newest one no fixed address, so this leads to the release
     # that lists it.

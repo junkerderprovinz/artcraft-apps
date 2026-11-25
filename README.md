@@ -41,18 +41,25 @@ Each of the thirteen <a href="https://github.com/storytold">ArtCraft</a> apps ge
   <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/group-server-dark.svg"><img src=".github/assets/sections/group-server.svg" alt="Server" width="100%"></picture>
 </p>
 <p align="center">
-  <a href="https://ca.unraid.net/apps?q=craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(0,0,841.9,245.3))" alt="Install from Unraid&#x27;s Community Applications" width="160" height="46.618"></a>
+  <a href="https://ca.unraid.net/apps?q=craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(0,0,841.9,245.3))" alt="Install from Unraid&#x27;s Community Applications" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://mos-official.net/apps.html?search=Craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(866,0,841.9,245.3))" alt="Install from the MOS Hub" width="160" height="46.618"></a>
+  <a href="https://mos-official.net/apps.html?search=Craft"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(866,0,841.9,245.3))" alt="Install from the MOS Hub" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/zimaos-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(1732,0,841.9,245.3))" alt="Install from the ZimaOS and CasaOS store" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/zimaos-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(1732,0,841.9,245.3))" alt="Install from the ZimaOS and CasaOS store" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/umbrel-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(2598,0,841.9,245.3))" alt="Install from the umbrelOS community app store" width="160" height="46.618"></a>
+  <a href="https://github.com/junkerderprovinz/umbrel-apps#install"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(2598,0,841.9,245.3))" alt="Install from the umbrelOS community app store" width="160" height="46.618"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(3464,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
+  <a href="#synology"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(3464,0,841.9,245.3))" alt="Run it on a Synology NAS" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(4330,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
+  <a href="#qnap"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(4330,0,841.9,245.3))" alt="Run it on a QNAP NAS" width="160" height="46.618"></a>
+  &nbsp;
+  <a href="#ugreen"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(5196,0,841.9,245.3))" alt="Run it on a UGREEN NAS" width="160" height="46.618"></a>
+  &nbsp;
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(6062,0,841.9,245.3))" alt="Download the docker-compose file" width="160" height="46.618"></a>
+</p>
+<p align="center">
+  <a href="https://github.com/junkerderprovinz/artcraft-apps/releases/latest"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(6928,0,841.9,245.3))" alt="Download the source archive" width="160" height="46.618"></a>
 </p>
 <!-- /download-buttons -->
 
@@ -70,11 +77,11 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <!-- give-buttons: written by scripts/gen_download_buttons.py -->
 <p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(5196,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(7794,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(6062,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(8660,0,841.9,245.3))" alt="PayPal" width="160" height="46.618"></a>
   &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=509c6fbfa82d#svgView(viewBox(6928,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
+  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/artcraft-apps/main/.github/assets/download-buttons/buttons.svg?v=615f47e6e080#svgView(viewBox(9526,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.618"></a>
 </p>
 <!-- /give-buttons -->
 
@@ -327,13 +334,27 @@ Swap `photocraft` for any app from the list above. Open `https://<server-ip>:300
 
 [compose/](compose) has one file per app for any Linux server with Docker. Put the one you want in a folder of its own, point the folders under `volumes` at your files and start it with `docker compose up -d`. The folders are created next to the file.
 
-- **Synology:** in Container Manager, create a project from the file (DSM 7.2 or newer).
-- **Ugreen:** in the Docker app of UGOS Pro, create a project from the file.
-- **QNAP:** in Container Station, create an application from the file.
+- **Synology:** see [Synology](#synology) below.
+- **QNAP:** see [QNAP](#qnap) below.
+- **UGREEN:** see [UGREEN](#ugreen) below.
 - **Proxmox:** run it in a VM or an LXC container that has Docker.
 - **MOS:** install the app you want from the [MOS Hub](https://mos-official.net/apps.html?search=Craft).
 - **ZimaOS and CasaOS:** add the [community store](https://github.com/junkerderprovinz/zimaos-apps#install) and install the app you want from it.
 - **umbrelOS:** add the [community app store](https://github.com/junkerderprovinz/umbrel-apps#install) and install the app you want from it.
+
+### Synology
+
+In Container Manager (DSM 7.2 or newer), open **Project** and click **Create**. Pick a folder for the app and upload its file from [compose/](compose). Container Manager does not create missing folders, so create the ones the file names under `volumes` in File Station first.
+
+### QNAP
+
+In Container Station, open **Applications** and click **Create**. Paste its file from [compose/](compose) and point the folders under `volumes` at a share, for example `/share/Container/<app>`.
+
+### UGREEN
+
+In the Docker app of UGOS Pro, open **Project** and click **Create**. Pick a folder for the app and paste its file from [compose/](compose).
+
+<sub>The Synology logo is a trademark of Synology Inc. and the QNAP logo a trademark of QNAP Systems, Inc., both registered in Taiwan and other regions.</sub>
 
 <br>
 

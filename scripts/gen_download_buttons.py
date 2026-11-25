@@ -6,7 +6,7 @@ holding them together with the donation buttons, and every button row in
 README.md.
 
 The buttons come in the same five groups, in this order: the server (the
-Unraid template, the container and the source), the desktop apps,
+Unraid template, the container, the Proxmox route and the source), the desktop apps,
 the phone apps, the browser extensions and the house's companion apps. What a
 repository does not ship is left out. Each group opens with its title, a band
 across the column with the group's icon and word, and fills a row of four
@@ -20,8 +20,10 @@ preview. They stand centred under the intro, side by side when a repository
 has both, between their own markers, which the first run puts in above the
 table of contents. A repository with only these two needs no download rows.
 
-A button carries one line, its name, as the apps' buttons do at rest. Only a
-listing still to come adds a second line saying so.
+A button carries its name, as the apps' buttons do at rest. A desktop build
+adds its architecture on a second line, since an ARM segment beside a bare
+name reads as the only build there is. A listing still to come adds a line
+saying so.
 An ARM build is a segment of the button it belongs to, and so is the macOS
 zip. A portable build gets its own button, like the Flatpak, because its ARM
 build needs a segment too.
@@ -30,7 +32,7 @@ Size and corner radius are the Buy Me a Coffee button's (841.9 by 245.3, rx
 38.2), so every button on the page has the same shape.
 
 The logos are the platforms' own marks from Font Awesome Free (CC BY 4.0 for the
-icons), Vivaldi's and Flatpak's from Simple Icons (Flatpak's mark is CC BY 3.0,
+icons), Vivaldi's, Proxmox's and Flatpak's from Simple Icons (Flatpak's mark is CC BY 3.0,
 flatpak.org/press), F-Droid's from its 2015 logo in
 gitlab.com/fdroid/artwork (CC BY-SA 3.0 or GPL-3.0-or-later) with the eyes,
 ring and F cut out, and Unraid's from Dashboard Icons (Apache-2.0); see
@@ -100,7 +102,8 @@ COMPANIONS = 4
 # brand file, background, ink, name, segment label, accessible name. The same
 # thing carries the same words in every README. The group's title already says
 # Server, Desktop or Android, so a name says only what tells the buttons of a
-# group apart. The segment label is the one line a segment shows.
+# group apart. The segment label is the one line a segment shows, and the
+# second line of the buttons in ARCH.
 WINDOWS = ("#0078d4", "#ffffff")
 KINDS = {
     # The middle of the orange in Unraid's logo, where white holds 3.4:1,
@@ -115,6 +118,10 @@ KINDS = {
     "umbrel":           (0, "umbrel", "#5351f3", "#ffffff", "Umbrel", "Community store", "Install from the umbrelOS community app store"),
     "docker":           (0, "docker", "#1d63ed", "#ffffff", "Docker", "Container", "Run it with Docker"),
     "compose":          (0, "docker", "#1d63ed", "#ffffff", "Docker", "compose file", "Download the docker-compose file"),
+    # Proxmox's orange. White holds 3.0:1 on it, a little under Unraid's
+    # orange, which is enough for type this large. It leads to the README's own
+    # Proxmox section, so its link is an anchor on the page.
+    "proxmox":          (0, "proxmox", "#e57000", "#ffffff", "Proxmox", "LXC container", "Run it on Proxmox VE"),
     # Slate, since GitHub's black vanishes in the dark theme.
     "source":           (0, "zip", "#4d5562", "#ffffff", "Source code", "zip archive", "Download the source archive"),
     # No group, see DOCS_PX. The yellow is the coffee button's #fd0, and white
@@ -124,23 +131,26 @@ KINDS = {
     # stands apart from the yellow, and white holds 6.5:1 on it.
     "preview":          (None, "eye", "#6f42c1", "#ffffff", "Live preview", "live site", "Try it live"),
     "windows":          (1, "windows", *WINDOWS, "Windows", "x64", "Download for Windows"),
-    "windows-arm":      (1, None, *WINDOWS, "Windows", "ARM", "Download for Windows on ARM"),
+    "windows-arm":      (1, None, *WINDOWS, "Windows", "ARM64", "Download for Windows on ARM"),
     "windows-portable": (1, "windows", *WINDOWS, "Portable", "x64", "Download the portable Windows app"),
-    "windows-portable-arm": (1, None, *WINDOWS, "Portable", "ARM", "Download the portable Windows app for ARM"),
+    "windows-portable-arm": (1, None, *WINDOWS, "Portable", "ARM64", "Download the portable Windows app for ARM"),
     "windows-script":   (1, "windows", *WINDOWS, "Windows", "start script", "Download the Windows start script"),
-    # Space grey, since black vanishes against GitHub's dark theme.
-    "macos":            (1, "apple", "#6e6e73", "#ffffff", "macOS", "Universal", "Download for macOS"),
+    # Space grey, since black vanishes against GitHub's dark theme. "Apple
+    # silicon and Intel" is wider than the button.
+    "macos":            (1, "apple", "#6e6e73", "#ffffff", "macOS", "Apple and Intel", "Download for macOS on Apple silicon or Intel"),
     "macos-zip":        (1, None, "#6e6e73", "#ffffff", "macOS", "Zip", "Download the macOS app as a zip"),
     # For apps that ship Intel and Apple silicon as two files.
-    "macos-split":      (1, "apple", "#6e6e73", "#ffffff", "macOS", "Intel, ARM", "Download for macOS on Intel or Apple silicon"),
+    "macos-split":      (1, "apple", "#6e6e73", "#ffffff", "macOS", "Apple and Intel", "Download for macOS on Apple silicon or Intel"),
     # Tux yellow, with dark ink for contrast.
     "linux":            (1, "linux", "#fcc624", "#1b1b1b", "Linux", "x64", "Download for Linux"),
-    "linux-arm":        (1, None, "#fcc624", "#1b1b1b", "Linux", "ARM", "Download for Linux on ARM"),
+    "linux-arm":        (1, None, "#fcc624", "#1b1b1b", "Linux", "ARM64", "Download for Linux on ARM"),
     "linux-portable":   (1, "linux", "#fcc624", "#1b1b1b", "Portable", "x64", "Download the portable Linux app"),
-    "linux-portable-arm": (1, None, "#fcc624", "#1b1b1b", "Portable", "ARM", "Download the portable Linux app for ARM"),
+    "linux-portable-arm": (1, None, "#fcc624", "#1b1b1b", "Portable", "ARM64", "Download the portable Linux app for ARM"),
+    "appimage":         (1, "linux", "#fcc624", "#1b1b1b", "AppImage", "x64", "Download the AppImage"),
+    "appimage-arm":     (1, None, "#fcc624", "#1b1b1b", "AppImage", "ARM64", "Download the AppImage for ARM"),
     # Flatpak's own blue, where white holds 3.3:1, about as much as on Unraid's orange.
     "flatpak":          (1, "flatpak", "#4a90d9", "#ffffff", "Flatpak", "x64", "Download the Flatpak"),
-    "flatpak-arm":      (1, None, "#4a90d9", "#ffffff", "Flatpak", "ARM", "Download the Flatpak for ARM"),
+    "flatpak-arm":      (1, None, "#4a90d9", "#ffffff", "Flatpak", "ARM64", "Download the Flatpak for ARM"),
     "linux-script":     (1, "linux", "#fcc624", "#1b1b1b", "Linux", "start script", "Download the Linux start script"),
     "google-play":      (2, "google-play", "#01875f", "#ffffff", "Google Play", "Google Play", "Get it on Google Play"),
     "f-droid":          (2, "f-droid", "#1976d2", "#ffffff", "F-Droid", "F-Droid", "Get it on F-Droid"),
@@ -162,14 +172,17 @@ KINDS = {
     # logo's darker half, since a one-ink mark cannot carry its colours.
     "parleyport":       (COMPANIONS, "parleyport", "#1f2328", "#ffffff", "ParleyPort", "own relay", "Get ParleyPort, the relay for apps that pair their instances"),
     "bombvault-widget": (COMPANIONS, "bombvault-widget", "#4e5051", "#ffffff", "Widget", "Unraid plugin", "Get the BombVault Widget for the Unraid dashboard"),
-    # The brown of TollRoll's ribbon, where white holds 7.5:1.
-    "tollroll":         (COMPANIONS, "tollroll", "#7f443a", "#ffffff", "TollRoll", "Unraid plugin", "Get TollRoll, the tile for the Unraid dashboard"),
+    # The gold of TollRoll's logo, where the dark ink holds 9.6:1.
+    "tollroll":         (COMPANIONS, "tollroll", "#e6bc59", "#1b1b1b", "TollRoll", "Unraid plugin", "Get TollRoll, the tile for the Unraid dashboard"),
 }
 # Joined to the button they belong to, in this order, rather than standing alone.
 SEGMENTS = {
     "windows": ("windows-arm",), "windows-portable": ("windows-portable-arm",), "macos": ("macos-zip",),
     "linux": ("linux-arm",), "linux-portable": ("linux-portable-arm",), "flatpak": ("flatpak-arm",),
+    "appimage": ("appimage-arm",),
 }
+# The builds whose architecture stands under their name.
+ARCH = {"windows", "windows-portable", "macos", "macos-split", "linux", "linux-portable", "flatpak", "appimage"}
 # A store listing that does not exist yet is drawn without a link, with "Soon"
 # under its name, or nobody could tell why the button leads nowhere.
 SOON = {
@@ -282,7 +295,7 @@ MARK = """  <g transform="translate({gx} {gy}) scale({scale})" fill="{ink}">
 """
 # The one line sits on the baseline that centres a cap height of 82 units.
 NAME = """  <text x="{head_x}" y="151" font-family="{font}" font-size="82" font-weight="700" fill="{ink}">{head}</text>"""
-NAME_AND_SOON = """  <text x="{head_x}" y="108" font-family="{font}" font-size="82" font-weight="700" fill="{ink}">{head}</text>
+NAME_AND_SUB = """  <text x="{head_x}" y="108" font-family="{font}" font-size="82" font-weight="700" fill="{ink}">{head}</text>
   <text x="{sub_x}" y="186" font-family="{font}" font-size="64" font-weight="400" fill="{ink}" fill-opacity="0.9">{sub_text}</text>"""
 
 # A segment has no mark, and its left edge is a darker line against the part
@@ -362,7 +375,7 @@ def rows():
     for kind, href in config.BUTTONS.items():
         if href is None and kind not in SOON:
             raise SystemExit("%s has no link" % kind)
-        if href and "/%s/" % REPO not in href and not any(host in href for host in STORES):
+        if href and not href.startswith("#") and "/%s/" % REPO not in href and not any(host in href for host in STORES):
             raise SystemExit("REPO is %r, but %s leads to %s" % (REPO, kind, href))
     joined = {s for group in SEGMENTS.values() for s in group}
     for base, group in SEGMENTS.items():
@@ -448,8 +461,9 @@ def num(x):
 
 def button(part, delay, cycle):
     """One part's own SVG document, its band starting after `delay`."""
-    common = dict(font=FONT, ink=part.ink, head=part.head, sub_text=part.sub if part.soon else "")
-    words = (NAME_AND_SOON if part.soon else NAME).format(head_x=TEXT_X, sub_x=TEXT_X + 2, **common)
+    two_lines = part.soon or part.kind in ARCH
+    common = dict(font=FONT, ink=part.ink, head=part.head, sub_text=part.sub if two_lines else "")
+    words = (NAME_AND_SUB if two_lines else NAME).format(head_x=TEXT_X, sub_x=TEXT_X + 2, **common)
     if part.mark:
         markup, scale, dx, dy = brand(part.mark, part.ink)
         face = MARK.format(gx=round(GX + dx, 2), gy=round(GY + dy, 2), scale=round(scale, 5), paths=markup, ink=part.ink) + words

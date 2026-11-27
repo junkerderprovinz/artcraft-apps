@@ -1,8 +1,8 @@
 [
   { "app": "cadcraft",    "title": "CADCraft",    "version": "0.20.1",  "kind": "computer-aided design and drafting" },
-  { "app": "deckcraft",   "title": "DeckCraft",   "version": "0.18.1",  "kind": "presentations and slide shows" },
-  { "app": "designcraft", "title": "DesignCraft", "version": "0.20.1",  "kind": "page layout and publishing" },
-  { "app": "effectcraft", "title": "EffectCraft", "version": "0.24.1", "kind": "motion graphics and compositing" },
+  { "app": "deckcraft",   "title": "DeckCraft",   "version": "0.19.1",  "kind": "presentations and slide shows" },
+  { "app": "designcraft", "title": "DesignCraft", "version": "0.21.1",  "kind": "page layout and publishing" },
+  { "app": "effectcraft", "title": "EffectCraft", "version": "0.25.1", "kind": "motion graphics and compositing" },
   { "app": "figcraft",    "title": "FigCraft",    "version": "0.18.1",  "kind": "interface design and prototyping" },
   { "app": "filmcraft",   "title": "FilmCraft",   "version": "0.20.1",  "kind": "nonlinear video editing" },
   { "app": "gridcraft",   "title": "GridCraft",   "version": "0.19.1",  "kind": "spreadsheets" },
@@ -11,5 +11,5 @@
   { "app": "photocraft",  "title": "PhotoCraft",  "version": "0.23.1",  "kind": "photo editing" },
   { "app": "soundcraft",  "title": "SoundCraft",  "version": "0.20.1",  "kind": "audio recording and mixing" },
   { "app": "vectorcraft", "title": "VectorCraft", "version": "0.24.1", "kind": "vector illustration" },
-  { "app": "wordcraft",   "title": "WordCraft",   "version": "0.18.1",  "kind": "word processing" }
+  { "app": "wordcraft",   "title": "WordCraft",   "version": "0.19.1",  "kind": "word processing" }
 ]

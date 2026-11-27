@@ -13,6 +13,7 @@ BUTTONS = {
     "mos": "https://mos-official.net/apps.html?search=Craft",
     "zimaos": "https://github.com/junkerderprovinz/zimaos-apps#install",
     "umbrel": "https://github.com/junkerderprovinz/umbrel-apps#install",
+    "truenas-yaml": "https://github.com/junkerderprovinz/truenas-apps#install",
     # One compose file per app, so this leads to the folder that holds them.
     "compose": "https://github.com/junkerderprovinz/artcraft-apps/tree/main/compose",
     "synology": "#synology",
